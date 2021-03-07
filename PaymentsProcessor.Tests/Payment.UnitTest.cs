@@ -4,7 +4,6 @@ using PaymentProcessorAPI.Controllers;
 using PaymentProcessorAPI.Services;
 using PaymentProcessorAPI.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
 namespace PaymentsProcessor.Tests
 {
@@ -24,7 +23,7 @@ namespace PaymentsProcessor.Tests
             FakeRequest.Amount = 25;
 
             var result = paymentsController.Post(FakeRequest);
-            result.ToString().Equals(HttpStatusCode.NotFound);
+            Assert.IsType<BadRequestObjectResult>(result);
         }
     }
 }
